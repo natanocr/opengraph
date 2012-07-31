@@ -12,7 +12,6 @@ Features
 * Input and parsing from a specific url
 * Input and parsung from html previous extracted
 * HTML output
-* JSON output
 
 Usage
 ==============
@@ -54,9 +53,3 @@ type            => video
 >>> movie.parser(HTML)
 >>> video.is_valid()
 True
-
-**Generate JSON or HTML**
-
->>> 
->>>
->>>
