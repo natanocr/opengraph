@@ -1,16 +1,15 @@
 # encoding: utf-8
-
 import re
-import urllib2
-from BeautifulSoup import BeautifulSoup
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
 from contextlib import closing
-from urlparse import urljoin
+from urllib.parse import urljoin
+
 
 class OpenGraph(object):
     """
     """
 
-    
     scrape = False
 
     def __init__(self, url="http://example.com", html=None, scrape=False, required_attrs = set(('title', 'type', 'image', 'url')), **kwargs):
@@ -22,7 +21,7 @@ class OpenGraph(object):
         self.required_attrs = set(required_attrs)
             
         if not html:
-            with closing(urllib2.urlopen(url)) as raw:
+            with closing(urlopen(url)) as raw:
                 html = raw.read()
         
         self.parser(html)
@@ -42,6 +41,7 @@ class OpenGraph(object):
             if og.has_key(u'content'):
                 self.items[og[u'property'][3:]]=og[u'content']
         
+
         # Couldn't fetch all attrs from og tags, try scraping body
         if self.scrape:
             remaining_keys = self.required_attrs - set(self.items.viewkeys())
@@ -96,4 +96,3 @@ class OpenGraph(object):
                 return heading.text
             else:
                 return doc.html.find("p").text
-        

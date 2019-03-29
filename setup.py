@@ -29,6 +29,5 @@ setup(
     url='https://github.com/graingert/opengraph',
     license='MIT',
     packages=["ogp",],
-    install_requires=['BeautifulSoup'],
+    install_requires=['bs4'],
 )
-    
